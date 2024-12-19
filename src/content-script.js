@@ -20,7 +20,8 @@ function hideControls() {
     console.log("[youtube-hide-controls] HIDE_PLAYER!", settings);
     window.postMessage({
         "source": "YOUTUBE_HIDE_CONTROL",
-        "action": "HIDE_PLAYER"
+        "action": "HIDE_PLAYER",
+        "value": settings.useMouse
     });
 }
 

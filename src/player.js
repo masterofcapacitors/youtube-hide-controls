@@ -33,12 +33,14 @@ function getPlayerElement() {
     return null;
 }
 
-function hideControls() {
+function hideControls(useMouse) {
     const player = getPlayerElement();
 
     if (player) {
         player.hideControls();
-        player.style.cursor = "none";
+        if (useMouse) {
+            player.style.cursor = "none";
+        }
     }
 }
 
@@ -77,8 +79,8 @@ window.addEventListener("message", function(event) {
     if (event.data.action && event.data.action === "SHOW_PLAYER") {
         showControls();
     }
-    else if (event.data.action && event.data.action === "HIDE_PLAYER") {
-        hideControls();
+    else if (event.data.action && event.data.action === "HIDE_PLAYER" && event.data.value !== undefined) {
+        hideControls(event.data.value);
     }
     else if (event.data.action && event.data.action === "HIDE_VIDEO_OVERLAYS" && event.data.value !== undefined) {
         hideVideoOverlays(event.data.value);
